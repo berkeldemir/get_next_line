@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/17 18:12:02 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:08:31 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char    *get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	reco = ft_read(fd, full);
-	line = ft_line(fd, full);
-	reco = ft_next(fd, full);
-	return (full);
+	reco = ft_read(fd, reco);
+	line = ft_line(fd, reco);
+	reco = ft_next(fd, reco);
+	return (reco);
 }
 
 static void	*ft_free(char *ptr)
@@ -30,7 +30,7 @@ static void	*ft_free(char *ptr)
 	free(ptr);
 	return (NULL);
 }
-static char	*ft_read(int fd, char *full)
+static char	*ft_read(int fd, char *reco)
 {
 	char	*buff;
 	int		retval;
@@ -39,18 +39,23 @@ static char	*ft_read(int fd, char *full)
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
-	while (!ft_strchr(full, '\n') && retval != 0)
+	while (!ft_strchr(reco, '\n') && retval != 0)
 	{
 		retval = read(fd, buff, BUFFER_SIZE);
 		if (retval < 0)
 			return (buff = ft_free(buff));
 		buff[retval] = '\0';
-		full = ft_strjoin(full, buff);
-		if (!full)
+		reco = ft_strjoin(reco, buff);
+		if (!reco)
 			return (buff = ft_free(buff)); 
 	}
 	free(buff);
-	return (full);
+	return (reco);
+}
+
+static char	*ft_line(char *full)
+{
+	
 }
 
 #include <fcntl.h>
@@ -60,11 +65,5 @@ int	main(void)
 {
 	int	fd = open("berk.txt", O_RDWR);
 	printf("%s\n", get_next_line(fd));
-	
-}
-
-
-static char	*ft_line(char *full)
-{
 	
 }
