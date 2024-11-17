@@ -6,11 +6,24 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/17 16:18:52 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:21:52 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_strlen(char const *str)
+{
+	int	len;
+
+	len = 0;
+	while (*str != '\0')
+	{
+		len++;
+		str++;
+	}
+	return (len);
+}
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -50,4 +63,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new[index] = '\0';
 	return (new);
 }
-
