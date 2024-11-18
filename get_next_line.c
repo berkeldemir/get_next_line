@@ -6,48 +6,45 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/17 20:31:06 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:12:17 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	*ft_free(char *ptr)
+static void	*ft_free(char *ptr, char *ptr2)
 {
 	free(ptr);
+	if (ptr2)
+		free(ptr2);
 	return (NULL);
 }
+
+
 static char *ft_read(int fd, char *reco)
 {
-    char *buff;
-    char *temp;
-    int retval;
+	char	*buff;
+	char	*temp;
+	int		retval;
 
-    retval = 1;
-    buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-    if (!buff)
-        return (NULL);
-    while (!ft_strchr(reco, '\n') && retval != 0)
-    {
-        retval = read(fd, buff, BUFFER_SIZE);
-        if (retval < 0)
-        {
-            free(buff);
-            return (NULL);
-        }
-        buff[retval] = '\0';
-        temp = reco;
-        reco = ft_strjoin(reco, buff);
-        if (!reco)
-        {
-            free(buff);
-            free(temp);
-            return (NULL);
-        }
-        free(temp);
-    }
-    free(buff);
-    return (reco);
+	retval = 1;
+	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
+		return (NULL);
+	while (ft_strchr(reco, '\n') == NULL)
+	{
+		retval = read(fd, buff, BUFFER_SIZE);
+		if (retval == -1)
+			return (ft_free(buff, reco));
+		buff[retval] = '\0';
+		temp = reco;
+		reco = ft_strjoin(temp, buff);
+		if (!reco)
+			return (free(buff), ft_free(temp, NULL));
+		free(temp);
+	}
+	free(buff);
+	return (reco);
 }
 
 
@@ -100,12 +97,13 @@ static char	*ft_next(char *reco)
 	if (!ret)
 		return (NULL);
 	j = 0;
-	while (reco[i + j] != '\0' && reco[i + j] != '\n')
+	while (reco[i + j + 1] != '\0')
 	{
 		ret[j] = reco[i + j];
 		j++;
 	}
 	ret[j] = '\0';
+	free(reco);
 	return (ret);
 }
 
@@ -113,11 +111,14 @@ char    *get_next_line(int fd)
 {
 	static char *reco = NULL;
 	char        *line;
-	
+
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+		return (NULL);
 	reco = ft_read(fd, reco);
-	line = ft_line(reco);
-	reco = ft_next(reco);
+	if (!reco)
+		return (NULL);
+	//line = ft_line(reco);
+	//reco = ft_next(reco);
 	return (line);
 }
