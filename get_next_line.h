@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:27 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 13:14:05 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:10:53 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 #  define BUFFER_SIZE 4
 # endif
 
-int     ft_strlen(char *str);
+int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif

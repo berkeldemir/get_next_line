@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 13:56:49 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:16:20 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	*ft_free(char *ptr, char *ptr2)
 	return (NULL);
 }
 
-
-static char *ft_read(int fd, char *reco)
+static char	*ft_read(int fd, char *reco)
 {
 	char	*buff;
 	char	*temp;
@@ -40,7 +39,7 @@ static char *ft_read(int fd, char *reco)
 		temp = reco;
 		reco = ft_strjoin(temp, buff);
 		if (!reco)
-			return (free(buff), ft_free(temp, NULL));
+			return (ft_free(temp, buff));
 		free(temp);
 	}
 	free(buff);
@@ -104,16 +103,17 @@ static char	*ft_next(char *reco)
 	return (ret);
 }
 
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *reco = NULL;
-	char        *line;
+	static char	*reco = NULL;
+	char		*line;
 
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	reco = ft_read(fd, reco);
 	if (!reco)
-		return (NULL);
+		return (free(reco), NULL);
 	line = ft_line(reco);
 	reco = ft_next(reco);
 	return (line);

@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 13:50:10 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:11:32 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr(char *s, int c)
 	if (!s)
 		return (NULL);
 	if (c == '\0')
-		return ((char*)&s[ft_strlen(s)]);
+		return ((char *)&s[ft_strlen(s)]);
 	c = (unsigned char)c;
 	while (*s != c && *s != 0)
 		s++;
@@ -62,5 +62,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	res[i] = '\0';
-	return(res);
+	return (res);
 }
