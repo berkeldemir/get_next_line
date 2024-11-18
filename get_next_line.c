@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 11:12:17 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:16:26 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char *ft_read(int fd, char *reco)
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
-	while (ft_strchr(reco, '\n') == NULL)
+	while (ft_strchr(reco, '\n') == NULL && retval != 0)
 	{
 		retval = read(fd, buff, BUFFER_SIZE);
 		if (retval == -1)
@@ -109,7 +109,7 @@ static char	*ft_next(char *reco)
 
 char    *get_next_line(int fd)
 {
-	static char *reco = NULL;
+	static char *reco;
 	char        *line;
 
 	line = NULL;

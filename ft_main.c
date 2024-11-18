@@ -2,23 +2,17 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-int main(void)
+int main()
 {
-    int fd = open("berk.txt", O_RDONLY);
+    int fd;
     char *line;
-
-    if (fd == -1)
+    fd = open("a.txt", O_RDONLY);
+    int a = 3;
+    while (a--)
     {
-        perror("Error opening file");
-        return (1);
+        line = get_next_line(fd);
+        printf("%s", line);
+        free(line);
     }
-
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        printf("line:%s", line);
-        free(line);  // Free the allocated memory after printing the line
-    }
-
-    close(fd);  // Close the file descriptor
     return (0);
 }
