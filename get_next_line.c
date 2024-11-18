@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 13:05:14 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:56:49 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char *ft_read(int fd, char *reco)
 		retval = read(fd, buff, BUFFER_SIZE);
 		if (retval == -1)
 			return (ft_free(buff, reco));
-		buff[retval] = '\0';
+		buff[retval + 1] = '\0';
 		temp = reco;
 		reco = ft_strjoin(temp, buff);
 		if (!reco)

@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 13:14:10 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:50:10 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ int	ft_strlen(char *str)
 	int	len;
 
 	len = 0;
-	while (*str != '\0')
-	{
+	while (str[len] != '\0')
 		len++;
-		str++;
-	}
 	return (len);
 }
 
@@ -43,15 +40,16 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	char	*res;
-	
+
 	if (!s1)
 	{
-		res = (char *)malloc(sizeof(char) * 1);
-		if (!res)
+		s1 = (char *)malloc(sizeof(char) * 1);
+		if (!s1)
 			return (NULL);
-		res[0] = '\0';
-		return (res);
+		s1[0] = '\0';
 	}
+	if (!s1 || !s2)
+		return (NULL);
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (NULL);
