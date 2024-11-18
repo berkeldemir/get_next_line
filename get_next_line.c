@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 12:16:26 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:58:01 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static char *ft_read(int fd, char *reco)
 	free(buff);
 	return (reco);
 }
-
 
 static char	*ft_line(char *reco)
 {
@@ -96,12 +95,10 @@ static char	*ft_next(char *reco)
 	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
 	if (!ret)
 		return (NULL);
+	i++;
 	j = 0;
-	while (reco[i + j + 1] != '\0')
-	{
-		ret[j] = reco[i + j];
-		j++;
-	}
+	while (reco[i])
+		ret[j++] = reco[i++];
 	ret[j] = '\0';
 	free(reco);
 	return (ret);
@@ -109,16 +106,15 @@ static char	*ft_next(char *reco)
 
 char    *get_next_line(int fd)
 {
-	static char *reco;
+	static char *reco = NULL;
 	char        *line;
 
-	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	reco = ft_read(fd, reco);
 	if (!reco)
 		return (NULL);
-	//line = ft_line(reco);
-	//reco = ft_next(reco);
+	line = ft_line(reco);
+	reco = ft_next(reco);
 	return (line);
 }
