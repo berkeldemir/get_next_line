@@ -3,27 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/18 14:16:20 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:38:09 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	*ft_free(char *ptr, char *ptr2)
-{
-	free(ptr);
-	if (ptr2)
-		free(ptr2);
-	return (NULL);
-}
-
 static char	*ft_read(int fd, char *reco)
 {
 	char	*buff;
-	char	*temp;
 	int		retval;
 
 	retval = 1;
@@ -34,13 +25,11 @@ static char	*ft_read(int fd, char *reco)
 	{
 		retval = read(fd, buff, BUFFER_SIZE);
 		if (retval == -1)
-			return (ft_free(buff, reco));
+			return (free(buff), free(reco), NULL);
 		buff[retval + 1] = '\0';
-		temp = reco;
-		reco = ft_strjoin(temp, buff);
+		reco = ft_strjoin(reco, buff);
 		if (!reco)
-			return (ft_free(temp, buff));
-		free(temp);
+			return (free(buff), NULL);
 	}
 	free(buff);
 	return (reco);
@@ -63,12 +52,9 @@ static char	*ft_line(char *reco)
 		line = (char *)malloc(sizeof(char) * (len + 2));
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (reco[i] != '\0' && reco[i] != '\n')
-	{
+	i = -1;
+	while (reco[++i] != '\0' && reco[i] != '\n')
 		line[i] = reco[i];
-		i++;
-	}
 	if (reco[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
@@ -87,10 +73,7 @@ static char	*ft_next(char *reco)
 	while (reco[i] != '\0' && reco[i] != '\n')
 		i++;
 	if (reco[i] == '\0')
-	{
-		free(reco);
-		return (NULL);
-	}
+		return (free(reco), NULL);
 	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
 	if (!ret)
 		return (NULL);
@@ -99,7 +82,6 @@ static char	*ft_next(char *reco)
 	while (reco[i])
 		ret[j++] = reco[i++];
 	ret[j] = '\0';
-	free(reco);
 	return (ret);
 }
 
@@ -116,5 +98,7 @@ char	*get_next_line(int fd)
 		return (free(reco), NULL);
 	line = ft_line(reco);
 	reco = ft_next(reco);
+	if (!reco)
+		free(reco);
 	return (line);
 }
