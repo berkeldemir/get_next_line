@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/19 17:13:23 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:51:33 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*ft_read(int fd, char *reco)
 		buff[retval] = '\0';
 		reco = ft_strjoin(reco, buff);
 		if (!reco)
-			return (free(buff), NULL);
+			return (free(buff), free(reco), NULL);
 	}
 	free(buff);
 	return (reco);
@@ -73,7 +73,7 @@ static char	*ft_next(char *reco)
 	while (reco[i] != '\0' && reco[i] != '\n')
 		i++;
 	if (reco[i] == '\0')
-		return (free(reco), NULL);
+		return (NULL);
 	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
 	if (!ret)
 		return (NULL);
@@ -89,6 +89,7 @@ char	*get_next_line(int fd)
 {
 	static char	*reco = NULL;
 	char		*line;
+	char		*new_reco;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -96,6 +97,8 @@ char	*get_next_line(int fd)
 	if (!reco)
 		return (free(reco), NULL);
 	line = ft_line(reco);
-	reco = ft_next(reco);
+	new_reco = ft_next(reco);
+	free(reco);
+	reco = new_reco;
 	return (line);
 }
