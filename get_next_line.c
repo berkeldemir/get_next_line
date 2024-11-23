@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 12:23:01 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:29:39 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*ft_next(char *reco)
 {
 	int		i;
 	int		j;
-	char	*ans;
+	char	*ret;
 
 	if (!reco || reco[0] == '\0')
 		return (NULL);
@@ -74,15 +74,15 @@ static char	*ft_next(char *reco)
 		i++;
 	if (reco[i] == '\0')
 		return (NULL);
-	ans = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
-	if (!ans)
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
+	if (!ret)
 		return (NULL);
 	i++;
 	j = 0;
 	while (reco[i])
-		ans[j++] = reco[i++];
-	ans[j] = '\0';
-	return (ans);
+		ret[j++] = reco[i++];
+	ret[j] = '\0';
+	return (ret);
 }
 
 char	*get_next_line(int fd)
