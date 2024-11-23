@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 12:29:39 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:26:37 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*ft_line(char *reco)
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
-}
+} 
 
 static char	*ft_next(char *reco)
 {
@@ -81,6 +81,8 @@ static char	*ft_next(char *reco)
 	j = 0;
 	while (reco[i])
 		ret[j++] = reco[i++];
+	if (j = 0)
+		return(free(ret), NULL);
 	ret[j] = '\0';
 	return (ret);
 }
@@ -98,8 +100,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_line(reco);
 	newr = ft_next(reco);
-	if (!newr)
-		return (free(reco), NULL);
 	free(reco);
 	reco = newr;
 	return (line);

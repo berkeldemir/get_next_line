@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 12:30:56 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:54:23 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,6 @@ char	*ft_strchr(char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
-static char	*ft_strdup(char *s1)
-{
-	char	*buffer;
-	int		i;
-
-	i = 0;
-	buffer = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
-	if (!buffer)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		buffer[i] = s1[i];
-		i++;
-	}
-	buffer[i] = '\0';
-	return (buffer);
-}
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -59,9 +42,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*res;
 
 	if (!s1)
-		s1 = ft_strdup("");
-	if (!s2)
-		s2 = ft_strdup("");
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (NULL);
@@ -73,7 +59,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		res[i] = s2[i - ft_strlen(s1)];
 		i++;
 	}
-	free(s1);
+	if (s1)
+		free(s1);
 	res[i] = '\0';
 	return (res);
 }
