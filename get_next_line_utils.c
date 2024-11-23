@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 17:11:11 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:18:15 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,26 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
+static char	*ft_zerostr(void)
+{
+	char	*str;
+	
+	str = (char *)malloc(sizeof(char) * 1);
+	if (!str)
+		return (NULL);
+	str[0] = '\0';
+	return (str);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	char	*res;
 
 	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		if (!s1)
-			return (NULL);
-		s1[0] = '\0';
-	}
+		s1 = ft_zerostr();
+	if (!s1)
+		return (NULL);
 	if (!s2)
 		return (NULL);
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
