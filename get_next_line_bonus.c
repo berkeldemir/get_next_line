@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line copy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 17:33:13 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 17:37:17 by beldemir         ###   ########.fr       */
+/*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
+/*   Updated: 2024/11/23 17:51:40 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_read(int fd, char *reco)
 {
@@ -28,8 +28,6 @@ static char	*ft_read(int fd, char *reco)
 			return (free(buff), free(reco), NULL);
 		buff[retval] = '\0';
 		reco = ft_strjoin(reco, buff);
-		//if (!reco)
-		//	return (free(buff), NULL);
 	}
 	free(buff);
 	return (reco);
@@ -94,7 +92,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	reco[fd] = ft_read(fd, reco[fd]);
-	if (!reco)
+	if (!reco[fd])
 		return (NULL);
 	line = ft_line(reco[fd]);
 	newr = ft_next(reco[fd]);

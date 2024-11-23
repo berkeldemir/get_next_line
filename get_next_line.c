@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 17:07:29 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:53:26 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static char	*ft_next(char *reco)
 
 char	*get_next_line(int fd)
 {
-	static char	*reco = NULL;
+	static char	*reco;
 	char		*line;
 	char		*newr;
 
