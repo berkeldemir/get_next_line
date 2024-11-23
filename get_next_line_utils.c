@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/19 19:31:34 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:24:28 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	char	*res;
 
-	if (!s1)
+	if (!s1 && s2)
 		return (ft_strdup(s2));
-	if (!s2)
+	if (!s2 && s1)
 		return (ft_strdup(s1));
 	if (!s1 && !s2)
 		return (NULL);
