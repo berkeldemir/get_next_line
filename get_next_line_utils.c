@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 12:26:27 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:30:56 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*res;
 
 	if (!s1)
-		return (ft_strdup(s2));
+		s1 = ft_strdup("");
 	if (!s2)
-		return (ft_strdup(s1));
+		s2 = ft_strdup("");
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (NULL);
