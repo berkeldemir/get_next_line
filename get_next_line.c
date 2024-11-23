@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/19 19:14:48 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 11:57:26 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static char	*ft_next(char *reco)
 {
 	int		i;
 	int		j;
+	char	*ans;
 	char	*ret;
 
 	if (!reco || reco[0] == '\0')
@@ -74,14 +75,16 @@ static char	*ft_next(char *reco)
 		i++;
 	if (reco[i] == '\0')
 		return (NULL);
-	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
-	if (!ret)
+	ans = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
+	if (!ans)
 		return (NULL);
 	i++;
 	j = 0;
 	while (reco[i])
-		ret[j++] = reco[i++];
-	ret[j] = '\0';
+		ans[j++] = reco[i++];
+	ans[j] = '\0';
+	ret = ans;
+	free(ans);
 	return (ret);
 }
 
@@ -98,6 +101,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_line(reco);
 	newr = ft_next(reco);
+	if (!newr)
+		return (free(reco), NULL);
 	free(reco);
 	reco = newr;
 	return (line);
