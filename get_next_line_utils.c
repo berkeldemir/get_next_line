@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:33:46 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 18:18:15 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:24:41 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strchr(char *s, int c)
 static char	*ft_zerostr(void)
 {
 	char	*str;
-	
+
 	str = (char *)malloc(sizeof(char) * 1);
 	if (!str)
 		return (NULL);

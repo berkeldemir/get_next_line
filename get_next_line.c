@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 17:53:26 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:12:42 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_line(char *reco)
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
-} 
+}
 
 static char	*ft_next(char *reco)
 {

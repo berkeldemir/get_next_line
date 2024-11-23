@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line copy.c                               :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beldemir <beldemir@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 17:51:40 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:12:50 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_line(char *reco)
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
-} 
+}
 
 static char	*ft_next(char *reco)
 {
