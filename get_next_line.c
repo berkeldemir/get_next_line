@@ -6,7 +6,7 @@
 /*   By: beldemir <beldemir@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 13:41:48 by beldemir          #+#    #+#             */
-/*   Updated: 2024/11/23 18:12:42 by beldemir         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:10:09 by beldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*ft_next(char *reco)
 		i++;
 	if (!reco[i])
 		return (NULL);
-	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i + 1));
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(reco) - i));
 	if (!ret)
 		return (NULL);
 	i++;
